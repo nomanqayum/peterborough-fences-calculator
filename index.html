@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peterborough Fences Pricing</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #600000;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(1, 1, 1, 1.1);
+        }
+
+        .header .logo-container img {
+			background-color: #B0B0B0;
+			border-radius: 10px;
+            max-height: 90px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #FFFFFF;
+        }
+
+        .header .date {
+            font-size: 16px;
+            color: #FFFFFF;
+        }
+
+        /* Filters Section */
+        .filters {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .filters select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Actions Section */
+        .actions {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .actions button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #000000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .actions button:hover {
+            background-color: #800000;
+        }
+
+        /* Table Styles */
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .pricing-table th, .pricing-table td {
+            text-align: left;
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .pricing-table th {
+            background-color: #600000;
+            color: white;
+        }
+
+        .pricing-table tr {
+            display: table-row;
+        }
+
+        .pricing-table tr.hidden {
+            display: none;
+        }
+
+        .pricing-table td.center {
+            text-align: center;
+        }
+
+        .pricing-table td.peterborough {
+            font-weight: bold;
+            color: #0056b3;
+            background-color: #eef7ff;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+        }
+    </style>
+    <script>
+        // Add last modified date and time to the header
+        function addLastModifiedDate() {
+            const dateElement = document.querySelector('.date');
+            if (dateElement) {
+                const lastModified = new Date(document.lastModified); // Get the last modified date and time
+                const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' };
+                const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+
+                // Format the date and time
+                const formattedDate = lastModified.toLocaleDateString(undefined, optionsDate);
+                const formattedTime = lastModified.toLocaleTimeString(undefined, optionsTime);
+
+                // Update the text content with date and time
+                dateElement.textContent = `Last Modified: ${formattedDate} at ${formattedTime}`;
+            } else {
+                console.error("Element with class 'date' not found.");
+            }
+        }
+
+        // Save table as an image
+        function saveAsImage() {
+            const table = document.querySelector('.pricing-table');
+            html2canvas(table).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Peterborough_Fences_Pricing.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+
+        // Print the table
+        function printTable() {
+            window.print();
+        }
+
+        // Filter table rows based on dropdown selections
+        function filterTable() {
+            const typeFilter = document.getElementById('typeFilter').value.toLowerCase();
+            const heightFilter = document.getElementById('heightFilter').value.toLowerCase();
+            const diamondFilter = document.getElementById('diamondFilter').value.toLowerCase();
+            const rows = document.querySelectorAll('.pricing-table tbody tr');
+
+            rows.forEach(row => {
+                const type = row.getAttribute('data-type').toLowerCase();
+                const height = row.getAttribute('data-height').toLowerCase();
+                const diamond = row.getAttribute('data-diamond').toLowerCase();
+
+                if (
+                    (typeFilter === 'all' || type === typeFilter) &&
+                    (heightFilter === 'all' || height === heightFilter) &&
+                    (diamondFilter === 'all' || diamond === diamondFilter)
+                ) {
+                    row.classList.remove('hidden');
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+        }
+
+        // Run addCurrentDate on page load
+        window.onload = addLastModifiedDate;
+    </script>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="logo-container">
+            <img src="Chest Logo (Black).png" alt="Peterborough Fences Logo">
+        </div>
+        <h1>Peterborough Fences Pricing</h1>
+        <p class="date"></p>
+    </div>
+
+    <!-- Filters Section -->
+<div class="filters">
+        <select id="typeFilter" onchange="filterTable()">
+            <option value="all">All Fence Types</option>
+            <option value="residential">Residential Chain Link</option>
+            <option value="commercial">Commercial Chain Link</option>
+            <option value="wood">Wood Fence</option>
+            <option value="metal">Decorative Metal Fence</option>
+            <option value="farm">Farm Fence</option>
+            <option value="pool">Pool Fence</option>
+            <option value="repair">Fence Repair</option>
+            <option value="removal">Fence Removal</option>
+            <option value="chaingate">Chain Link Gates</option>
+
+
+
+        </select>
+        <select id="heightFilter" onchange="filterTable()">
+            <option value="all">All Heights</option>
+            <option value="4 ft">4 ft</option>
+            <option value="5 ft">5 ft</option>
+            <option value="6 ft">6 ft</option>
+        </select>
+        <select id="diamondFilter" onchange="filterTable()">
+            <option value="all">All Diamond Sizes</option>
+            <option value="2-inch">2-inch</option>
+            <option value="1.5-inch">1.5-inch</option>
+        </select>
+	<select id="supplierFilter" onchange="filterTable()">
+            <option value="all">All Suppliers</option>
+            <option value="Roe">Kreative Contracting</option>
+            <option value="Chris">One Landscape</option>
+            <option value="Nicole">Break and Stone</option>
+        </select>
+    </div>
+    <!-- Actions Section -->
+    <div class="actions">
+        <button onclick="saveAsImage()">Save as Image</button>
+        <button onclick="printTable()">Print</button>
+    </div>
+
+    <!-- Pricing Table -->
+    <table class="pricing-table">
+        <thead>
+            <tr>
+                <th>Type of Fence</th>
+                <th>Height</th>
+                <th>Diamond Size</th>
+                <th>Gauge</th>
+                <th>Supplier: Kreative Contracting (Roe)</th>
+                <th>Supplier: One Landscape (Chris)</th>
+                <th>Supplier: Stone and Brick (Nicole)</th>
+                <th>Peterborough Fences</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Residential Chain Link Fence -->
+            <tr data-type="residential" data-height="4 ft" data-diamond="2-inch">
+                <td>Residential Chain Link</td>
+                <td>4 ft</td>
+                <td>2-inch</td>
+                <td>11 Gauge</td>
+                <td class="center">$28/ft</td>
+                <td class="center">$30/ft</td>
+                <td class="center">$29/ft</td>
+                <td class="peterborough">$40/ft</td>
+            </tr>
+            <tr data-type="residential" data-height="4 ft" data-diamond="1.5-inch">
+                <td>Residential Chain Link</td>
+                <td>4 ft</td>
+                <td>1.5-inch</td>
+                <td>11 Gauge</td>
+                <td class="center">$29/ft</td>
+                <td class="center">$31/ft</td>
+                <td class="center">$30/ft</td>
+                <td class="peterborough">$42/ft</td>
+            </tr>
+            <tr data-type="residential" data-height="5 ft" data-diamond="2-inch">
+                <td>Residential Chain Link</td>
+                <td>5 ft</td>
+                <td>2-inch</td>
+                <td>11 Gauge</td>
+                <td class="center">$30/ft</td>
+                <td class="center">$32/ft</td>
+                <td class="center">$31/ft</td>
+                <td class="peterborough">$45/ft</td>
+            </tr>
+            <tr data-type="residential" data-height="5 ft" data-diamond="1.5-inch">
+                <td>Residential Chain Link</td>
+                <td>5 ft</td>
+                <td>1.5-inch</td>
+                <td>11 Gauge</td>
+                <td class="center">$31/ft</td>
+                <td class="center">$33/ft</td>
+                <td class="center">$32/ft</td>
+                <td class="peterborough">$47/ft</td>
+            </tr>
+            <tr data-type="residential" data-height="6 ft" data-diamond="2-inch">
+                <td>Residential Chain Link</td>
+                <td>6 ft</td>
+                <td>2-inch</td>
+                <td>9 Gauge</td>
+                <td class="center">$43/ft</td>
+                <td class="center">$45/ft</td>
+                <td class="center">$44/ft</td>
+                <td class="peterborough">$55/ft</td>
+            </tr>
+            <tr data-type="residential" data-height="6 ft" data-diamond="1.5-inch">
+                <td>Residential Chain Link</td>
+                <td>6 ft</td>
+                <td>1.5-inch</td>
+                <td>9 Gauge</td>
+                <td class="center">$48/ft</td>
+                <td class="center">$50/ft</td>
+                <td class="center">$49/ft</td>
+                <td class="peterborough">$62/ft</td>
+            </tr>
+            <!-- Commercial Chain Link Fence -->
+            <tr data-type="commercial" data-height="4 ft" data-diamond="2-inch">
+                <td>Commercial Chain Link</td>
+                <td>4 ft</td>
+                <td>2-inch</td>
+                <td>9 Gauge</td>
+                <td class="center">$43/ft</td>
+                <td class="center">$45/ft</td>
+                <td class="center">$44/ft</td>
+                <td class="peterborough">$55/ft</td>
+            </tr>
+            <tr data-type="commercial" data-height="4 ft" data-diamond="1.5-inch">
+                <td>Commercial Chain Link</td>
+                <td>4 ft</td>
+                <td>1.5-inch</td>
+                <td>9 Gauge</td>
+                <td class="center">$45/ft</td>
+                <td class="center">$47/ft</td>
+                <td class="center">$46/ft</td>
+                <td class="peterborough">$58/ft</td>
+            </tr>
+            <tr data-type="commercial" data-height="5 ft" data-diamond="2-inch">
+                <td>Commercial Chain Link</td>
+                <td>5 ft</td>
+                <td>2-inch</td>
+                <td>9 Gauge</td>
+                <td class="center">$46/ft</td>
+                <td class="center">$48/ft</td>
+                <td class="center">$47/ft</td>
+                <td class="peterborough">$60/ft</td>
+            </tr>
+            <tr data-type="commercial" data-height="5 ft" data-diamond="1.5-inch">
+                <td>Commercial Chain Link</td>
+                <td>5 ft</td>
+                <td>1.5-inch</td>
+                <td>9 Gauge</td>
+                <td class="center">$48/ft</td>
+                <td class="center">$50/ft</td>
+                <td class="center">$49/ft</td>
+                <td class="peterborough">$62/ft</td>
+            </tr>
+            <tr data-type="commercial" data-height="6 ft" data-diamond="2-inch">
+                <td>Commercial Chain Link</td>
+                <td>6 ft</td>
+                <td>2-inch</td>
+                <td>9 Gauge</td>
+                <td class="center">$43/ft</td>
+                <td class="center">$45/ft</td>
+                <td class="center">$44/ft</td>
+                <td class="peterborough">$55/ft</td>
+            </tr>
+            <tr data-type="commercial" data-height="6 ft" data-diamond="1.5-inch">
+                <td>Commercial Chain Link</td>
+                <td>6 ft</td>
+                <td>1.5-inch</td>
+                <td>9 Gauge</td>
+                <td class="center">$48/ft</td>
+                <td class="center">$50/ft</td>
+                <td class="center">$49/ft</td>
+                <td class="peterborough">$62/ft</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2025 Peterborough Fences. All Rights Reserved.</p>
+		<p style="margin-top: 10px;">Created By <a href="https://www.nqofficial.com" target="_blank" style="color: #000000; font-weight: bold; text-decoration: none;">Noman Qayum</a></p>
+
+
+    </div>
+
+</body>
+</html>

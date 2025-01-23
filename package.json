@@ -1,0 +1,30 @@
+{
+  "name": "peterborough-fences-calculator",
+  "version": "1.0.0",
+  "description": "A calculator for Peterborough Fences pricing",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "Noman Qayum",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^25.9.8",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.peterborough.fences.calculator",
+    "productName": "Peterborough Fences Calculator",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "assets/logo.png",
+      "target": "nsis"
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^6.3.9"
+  }
+}
