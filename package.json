@@ -1,14 +1,14 @@
 {
   "name": "peterborough-fences-calculator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A calculator for Peterborough Fences pricing",
   "main": "main.js",
- "scripts": {
-  "start": "electron .",
-  "build": "electron-builder",
-  "release": "npm run build && gh release create v%npm_package_version% dist/* -t \"Peterborough Fences Calculator v%npm_package_version%\" -n \"This is the release for version %npm_package_version%. Includes bug fixes and improvements.\"",
-  "bump-and-release": "git add -A && git commit -m \"Auto-commit before release\" && npm version patch && npm run release && git push && git push --tags"
-},
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "release": "npm run build && gh release create v%npm_package_version% dist/* -t \"Peterborough Fences Calculator v%npm_package_version%\" -n \"This is the release for version %npm_package_version%. Includes bug fixes and improvements.\"",
+    "bump-and-release": "git add -A && git commit -m \"Auto-commit before release\" && npm version patch && npm run release && git push && git push --tags"
+  },
   "author": "Noman Qayum",
   "license": "MIT",
   "devDependencies": {
