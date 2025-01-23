@@ -1,8 +1,8 @@
-version: 1.0.0
+version: 1.0.1
 files:
-  - url: Peterborough-Fences-Calculator-Setup-1.0.0.exe
-    sha512: GUEgz2bWuYKJ1Y1laGz6COVt6RG5cFaZiZcRk+jgQf5qMfWGVTTG9Zb/voPdb/Yk6hwgiBOefs86soVLvVTRrw==
-    size: 83744401
-path: Peterborough-Fences-Calculator-Setup-1.0.0.exe
-sha512: GUEgz2bWuYKJ1Y1laGz6COVt6RG5cFaZiZcRk+jgQf5qMfWGVTTG9Zb/voPdb/Yk6hwgiBOefs86soVLvVTRrw==
-releaseDate: '2025-01-23T19:05:52.191Z'
+  - url: Peterborough-Fences-Calculator-Setup-1.0.1.exe
+    sha512: NwQFqaf65ARHbBeGceUxwNRZAeqay6PndBME57W27yonGOtskfdxLSKZjYLr38483sBwySuOXrH5o90g9qF5CQ==
+    size: 83744474
+path: Peterborough-Fences-Calculator-Setup-1.0.1.exe
+sha512: NwQFqaf65ARHbBeGceUxwNRZAeqay6PndBME57W27yonGOtskfdxLSKZjYLr38483sBwySuOXrH5o90g9qF5CQ==
+releaseDate: '2025-01-23T19:23:51.550Z'
