@@ -1,6 +1,6 @@
 {
   "name": "peterborough-fences-calculator",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A calculator for Peterborough Fences pricing",
   "main": "main.js",
   "scripts": {
