@@ -4,9 +4,11 @@
   "description": "A calculator for Peterborough Fences pricing",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "build": "electron-builder"
-  },
+  "start": "electron .",
+  "build": "electron-builder",
+  "release": "npm run build && gh release create v$(node -p \"require('./package.json').version\") dist/* -t \"v$(node -p 'require(\"./package.json\").version')\" -n \"Release for version $(node -p 'require(\"./package.json\").version')\"",
+  "bump-and-release": "npm version patch && npm run release"
+},
   "author": "Noman Qayum",
   "license": "MIT",
   "devDependencies": {
@@ -22,6 +24,11 @@
     "win": {
       "icon": "assets/logo.png",
       "target": "nsis"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "nomanqayum",
+      "repo": "peterborough-fences-calculator"
     }
   },
   "dependencies": {
