@@ -1,0 +1,39 @@
+{
+  "name": "peterborough-fences-calculator",
+  "version": "1.0.9",
+  "description": "A calculator for Peterborough Fences pricing",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "release": "npm run build && gh release create v%npm_package_version% dist/\"Peterborough Fences Calculator Setup %npm_package_version%.exe\" dist/latest.yml dist/\"Peterborough Fences Calculator Setup %npm_package_version%.exe.blockmap\" -t \"Peterborough Fences Calculator v%npm_package_version%\" -n \"This is the release for version %npm_package_version%. Includes bug fixes and improvements.\"",
+    "bump-and-release": "git add -A && git commit -m \"Auto-commit before release\" && npm version patch && git push && git push --tags && npm run release"
+  },
+  "author": "Noman Qayum",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^25.9.8",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.peterborough.fences.calculator",
+    "productName": "Peterborough Fences Calculator",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "assets/logo.png",
+      "target": "nsis"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "nomanqayum",
+      "repo": "peterborough-fences-calculator"
+    }
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "electron-log": "^5.2.4",
+    "electron-updater": "^6.3.9"
+  }
+}

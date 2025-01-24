@@ -1,0 +1,14 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.peterborough.fences.calculator
+productName: Peterborough Fences Calculator
+win:
+  icon: assets/logo.png
+  target: nsis
+publish:
+  provider: github
+  owner: nomanqayum
+  repo: peterborough-fences-calculator
+files: []
+electronVersion: 25.9.8
